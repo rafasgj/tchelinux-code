@@ -1,4 +1,4 @@
-PALESTRAS=apresentacao documentacao
+PALESTRAS=apresentacao documentacao encerramento
 
 %.pdf: %.tex
 	pdflatex $<
