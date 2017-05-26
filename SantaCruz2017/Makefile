@@ -1,4 +1,4 @@
-PALESTRAS=opencv_python
+PALESTRAS=opencv_python linux_distros
 
 %.pdf: %.tex
 	pdflatex $<
@@ -11,4 +11,3 @@ all: $(patsubst %,%.pdf,$(PALESTRAS))
 
 clean:
 	$(RM) *.aux *.dvi *.pdf *.out *.log *.nav *.snm *.toc
-
