@@ -12,10 +12,10 @@
 \usepackage{graphics}
 
 % Configura a apresentação para ser executada em tela cheia.
-%\hypersetup{pdfpagemode=FullScreen}
+\hypersetup{pdfpagemode=FullScreen}
 
 % Hide beamer navigation simbols
-%\beamertemplatenavigationsymbolsempty
+\beamertemplatenavigationsymbolsempty
 
 %
 % Configuração da apresentação.
@@ -72,7 +72,7 @@ Beamer, baseada em código.}
         % Cria um overlay para uma imagem.
         \begin{tikzpicture}[remember picture,overlay]  
             % Posiciona o overlay na página
-            \node [xshift=-3cm,yshift=3cm] at (current page.south east)
+            \node [xshift=-3cm,yshift=-5.5cm] at (current page.south east)
             % Adiciona a imagem, definindo seu tamanho
             {\includegraphics[width=4cm]{../images/Tuxgaucho.png}};
         \end{tikzpicture}
@@ -98,6 +98,15 @@ Beamer, baseada em código.}
 % Cria um slide com titulo, items e uma imagem.
 \begin{frame}
     \frametitle{Títulos são importantes}
+    
+    % Cria um overlay para uma imagem.
+    \begin{tikzpicture}[remember picture,overlay]  
+        % Posiciona o overlay na página
+        \node [xshift=0,yshift=0] at (current page.north west)
+        % Adiciona a imagem, definindo seu tamanho
+        {\includegraphics[width=2cm]{../images/Tuxgaucho.png}};
+    \end{tikzpicture}
+    
     % Adiciona itens sem numeração.    
     \begin{itemize}
         \item{Não utilize muito texto em uma apresentação.}
@@ -105,13 +114,6 @@ Beamer, baseada em código.}
         \item{Beamer, ainda é \LaTeX.}
     \end{itemize}
         
-    % Cria um overlay para uma imagem.
-    \begin{tikzpicture}[remember picture,overlay]  
-        % Posiciona o overlay na página
-        \node [xshift=\paperwidth / 2,yshift=2cm] at (current page.south west)
-        % Adiciona a imagem, definindo seu tamanho
-        {\includegraphics[width=2cm]{../images/Tuxgaucho.png}};
-    \end{tikzpicture}
 \end{frame}
 
 % Cria um slide com uma única imagem, definida como imagem de fundo.
@@ -162,7 +164,7 @@ Beamer, baseada em código.}
     % Cria um overlay para uma imagem.
     \begin{tikzpicture}[remember picture,overlay]  
         % Posiciona o overlay na página
-        \node [xshift=-2cm,yshift=1cm] at (current page.south east)
+        \node [xshift=-3cm,yshift=-3cm] at (current page.south east)
         % Adiciona o text, definindo seu tamanho
         {\tiny Ben Kranke/Getty};
     \end{tikzpicture}
