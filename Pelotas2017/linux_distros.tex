@@ -1,0 +1,407 @@
+\documentclass[aspectratio=169,14pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{graphics}
+\usepackage{tikz}
+\usepackage{transparent}
+% Adiciona tux gauderio a todos os slides
+\usebackgroundtemplate{
+    {
+        \transparent{0.2}
+        \includegraphics[width=1.1\paperheight]{../images/Tuxgaucho.png}
+    }
+}
+% Configura a apresentação para ser executada em tela cheia.
+\hypersetup{pdfpagemode=FullScreen}
+% Hide beamer navigation simbols
+\beamertemplatenavigationsymbolsempty
+% Centraliza os títulos dos slides.
+\setbeamertemplate{frametitle}[default][center]
+
+%
+% Modify from here!
+%
+\setbeamercolor{frametitle}{fg=black}
+\setbeamerfont{frametitle}{series=\bfseries}
+
+\usepackage{multicol}
+
+\title{Distribuições Linux}
+\author{Rafael Guterres Jeffman}
+\institute{Faculdade Senac Porto Alegre \\ Tchelinux}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Pré-História}
+    \begin{description}
+        \item[1970]{É lançado o UNIX (AT\&T).}
+        \item[1977]{É lançado o BSD.}
+        \item[1983]{Richard Stallman inicia o projeto GNU.}
+        \item[1985]{É lançado o Intel 80386.}
+        \item[1987]{É lançado o Minix.}
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Beginning}
+    From: torvalds@klaava.Helsinki.FI (Linus Benedict Torvalds) \\
+    Newsgroups: comp.os.minix \\
+    Subject: Gcc-1.40 and a posix-question \\
+    Message-ID: Date: 3 Jul 91 10:00:50 GMT \\
+    \vspace{1em}
+    Hello netlanders, \\
+    Due to a project I'm working on (in minix), I'm interested in the
+    posix standard definition. Could somebody please point me to a
+    (preferably) machine-readable format of the latest posix rules? \\
+    Ftp-sites would be nice.
+\end{frame}
+
+\begin{frame}
+    \frametitle{A História}
+    \framesubtitle{Anos 90 - O Início}
+    \begin{description}
+   \item[1991]{O kernel do Linux é anunciado em 25 de Agosto.}
+   \item[1992]{A licença do kernel muda para GNU GPL. Aparecem as distribuições.}
+   \item[1993]{É criada a Slackware, hoje, a distribuição mais longeva do Linux.}
+   \item[1994]{Versão 1.0 do kernel.}
+   \item[1995]{Linux funciona no DEC Alpha e na Sun SPARC.}
+   \item[1996]{Versão 2.0 do kernel com suporte a SMP.}
+   \item[1998]{Grandes empresas começam a suportar o Linux (IBM, Compaq e Oracle).}
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A História}
+    \framesubtitle{Anos 2000 - O crescimento.}
+    Durante este período, o \emph{Kernel} do Linux teve um crescimento em
+    relação ao hardware suportado, e a sua facilidade de uso, no entanto,
+    a grande diferença ocorreu com relação aos aplicativos.
+    \vspace{1em}
+    \begin{description}
+        \item[2000]{A Dell anuncia a disponibilidade do Linux em toda sua linha.}
+        \item[2007]{A Dell começa a distribuir notebooks com o Ubuntu.}
+        \item[2009]{2009: A Red-Hat, empresa cujos produtos são software
+        livre, tem o mesmo valor de mercado que a Sun (criadora do Java).}
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A História}
+    \framesubtitle{Anos 2010 - O Domínio do Mundo.}
+    \begin{description}
+        \item[2011]{Versão 3.0 do kernel é lançada.}
+        \item[2012]{O faturamento do mercado de Linux ultrapassa o
+        faturamento do mercado do UNIX.}
+        \item[2013]{A Google diz que 75\% do mercado de \emph{smartphones}
+        utiliza Android, baseado no \emph{kernel} do Linux.}
+        \item[2014]{A Canonical diz que o Ubuntu possui 22 Milhões de
+        usuários.}
+        \item[2015]{A versão 4.0 do \emph{kernel} do Linux é lançada.}
+        \item[2016]{Na lista de novembro, com exceção de
+        dois computadores, \textbf{todos} da lista dos 500 mais potentes
+        do mundo, executam o \textit{kenel} do Linux.}
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{O Kernel}
+    \begin{itemize}
+        \item O que faz um kernel?
+        \item Por que eu preciso de um kernel?
+        \item Por que não adianta só ter um kernel?
+    \end{itemize}
+\end{frame}
+
+{%
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{normal text}{fg=white}
+\begin{frame}
+    \frametitle{Distribuições Linux}
+    \begin{itemize}
+        \item{O que são?}
+        \item{Onde vivem?}
+        \item{Do que se alimentam?}
+    \end{itemize}
+\end{frame}
+}
+
+\begin{frame}
+    \frametitle{Sistema Operacional \\ não é só Kernel}
+    \begin{itemize}
+        \item Ferramentas de gerenciamento.
+        \item Ferramentas de iteração com usuário.
+        \item Aplicações utilizam serviços do kernel para prestar
+        serviços aos usuários.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{O que é uma e o que faz \\ uma Distribuição Linux?}
+    \begin{itemize}
+        \item Distribuição Linux é uma coleção de softwares.
+        \item Gerenciamento do Sistema.
+        \item Gerenciamento de Usuários.
+        \item Ferramentas básicas.
+        \item Aplicações.
+        serviços aos usuários.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+    \Huge \textbf{A História \\ das Distribuições Linux}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{1992}
+    \begin{description}
+        \item[MCC] Primeira distribuição Linux.
+        \item [SLS] Segunda distribuição Linux. Talvez a que tenha tido
+        mais problemas, mas, na época, a que tinha mais potencial.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{1993}
+    \begin{center}\large Slackware \end{center}
+    \begin{itemize}
+        \item Patrick Volkerding, desenvolvedor que utilizava
+        a SLS criou o Slackware
+        \item O objetivo era tentar resolver os problemas do SLS.
+        \item Ele conseguiu.
+        \item É a distribuição mais longeva do Linux.
+        \item Última \emph{Release}: Julho de 2016.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{1993}
+    \begin{center}\large Debian \end{center}
+    \begin{itemize}
+      \item Também foi criado devido a problemas com o SLS.
+      \item Ian Murdoch, criou uma distribuição onde todos programas
+      deveriam ser 100\% livres.
+      \item É a distribuição que mais influenciou a criação de novas distribuições.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{1994}
+    \begin{center}\large SuSE \end{center}
+    \begin{itemize}
+        \item Originalmente baseado no Slackware, surgiu na Alemanha.
+    \end{itemize}
+    \begin{center}\large Red Hat \end{center}
+    \begin{itemize}
+        \item Criada nos EUA, por um grupo de amigos.
+        \item Transformou-se na maior empresa de software livre do mundo.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{1997}
+    \begin{center}\large Linux PPC \end{center}
+    \begin{itemize}
+        \item Primeira distribuição Linux para os processadores RISC PowerPC.
+    \end{itemize}
+    \begin{center}\large Conectiva\end{center}
+    \begin{itemize}
+        \item Principal distribuição brasileira.
+        \item Da empresa saíram diversos desenvolvedores proeminentes no
+        mundo Linux, como Marcelo Tossatti, mantenedor do kernel 2.4.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{1998}
+    \begin{description}
+        \item[$\mu$CLinux] Linux baseado na $\mu$LibC para dispositivos embarcados.
+        \item[Corel] Mais uma tentativa de salvar a empresa, agora com uma distribuição Linux.
+        \item[Mandrake] Trouxe o Plug N' Play (de verdade) para o Linux.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{1999 / 2000}
+    \begin{center}\large Linux From Scratch \end{center}
+    Na virada do século, surge o Linux From Scratch, um conjunto de documentos,
+    \emph{patches} e \emph{scripts} que auxilia na criação de novas distribuições
+    Linux.
+\end{frame}
+
+\begin{frame}
+    \frametitle{2000}
+    \begin{description}
+        \item[SLES] A SuSE lança a versão \emph{enterprise} da sua distribuição.
+        \item[RHAS] A Red Hat lança a versão \emph{enterprise} da sua
+        distribuição, a Red Hat Advanced Server.
+        \item[Knoppix] A distribuição argentina mais conhecida, trazia um
+        excelente sistema de detecção e configuração de \emph{hardware Plug-and-Play}.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{2001}
+    \begin{description}
+        \item[OpenWRT] Distribuição que foi muito utilizada em roteadores
+        WiFi (Linksys).
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{2002}
+    \begin{description}
+        \item[Arch] O Arch Linux é uma das distribuições mais configuráveis
+        e uma excelente fonte de documentação sobre programas e configurações
+        necessárias ao funcionamento do Linux.
+        \item[Gentoo] Rovolucionou a distribuição de pacotes a partir do
+        código fonte.
+        \item[GoboLinux] Distribuição gaúcha que apresenta uma árvore de
+        diretórios completamente diferente, e modifica a forma como os
+        pacotes são gerenciados.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{2003}
+    \begin{description}
+        \item[RHEL] A Red Hat muda o nome da sua versão \emph{Enterprise},
+        e a direciona para toda a linha de equipamentos de uma companhia
+        (servidores e workstations).
+        \item[DSL] O Damn Small Linux era ma distribuição que cabia em
+        um único disquete. Lançou a idéia de pequenas distribuições
+        focadas em uma única tarefa.
+        \item[Fedora] A Red Hat separa a distribuição para usuários de
+        desktop do produto principal.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{2004}
+    \begin{description}
+        \item[CentOS] Lançado por uma comunidade, é uma versão livre do
+        Red Hat Enterprise Linux, e tem apoio da empresa.
+        \item[Ubuntu] Em outubro, é lançada pela Cannonical a primeira versão do Ubuntu,
+        com um sistema de distribuição e marketing que a fez rapidamente
+        virar a distribuição Linux mais utilizada no mundo, além de fazer
+        com que mais pessoas tivessem contato com o sistema.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{2005}
+    \begin{description}
+        \item[DNA] Baseado no Slackware, o DNA Linux é uma distribuição
+        focada nas pesquisas com Genoma Humano.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Distribuições mais influentes}
+    \begin{itemize}
+        \item Debian
+        \item Red Hat
+        \item Slackware
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+    \huge \textbf{http://futurist.se/gldt/}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Por que tantas distribuições?}
+    \begin{itemize}
+        \item Problemas diferentes.
+        \item Programas com versões diferentes.
+        \item Visão diferente de como a comunidade contribuirá.
+        \item Diferentes formas de gerenciar a distribuição.
+        \item Modelos de Negócio diferentes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Criando uma distribuição Linux}
+    \begin{itemize}
+        \item Linux From Scratch
+        \item Buildroot
+        \item OpenEmbedded
+        \item Yocto
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{E uma micro-mini-nano distribuição?}
+    \begin{itemize}
+        \item Kernel
+        \item Módulos de Hardware
+        \item Inicialização do Sistema
+        \item Busybox - o canivete suíço.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+    \huge \textbf{Qual é a melhor distribuição Linux?}
+    \end{center}
+\end{frame}
+
+{
+\setbeamertemplate{background canvas} [vertical shading][top=cyan,bottom=violet]
+%\usebackgroundtemplate[default]
+\begin{frame}
+    \includegraphics[width=0.9\paperwidth]{../images/gobolinux.png}
+\end{frame}
+}
+
+\begin{frame}
+    \begin{center}
+    \huge \textbf{Por quê?}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+    \huge \textbf{Por quê eu ajudei a desenvolver!}
+
+    \huge \textbf{;-)}
+    \end{center}
+\end{frame}
+
+{
+\usebackgroundtemplate{
+    {
+        \transparent{1.0}
+        \includegraphics[width=1.1\paperheight]{../images/Tuxgaucho.png}
+    }
+}
+\begin{frame}
+    \begin{flushright}
+    \huge \textbf{Thank you!}
+    \end{flushright}
+\end{frame}
+}
+
+\begin{frame}
+    \frametitle{Links Úteis}
+    http://kernel.org
+
+    http://distrowatch.com
+
+    http://futurist.se/gldt/
+
+    http://tchelinux.org
+
+    http://gobolinux.org
+\end{frame}
+
+\end{document}
