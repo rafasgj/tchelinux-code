@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage{graphics}
+\usepackage{transparen}
 % Adiciona tux gauderio a todos os slides
 \usebackgroundtemplate{
     \includegraphics[width=2cm]{../images/Tuxgaucho.png}
@@ -27,5 +28,20 @@
 \begin{frame}
     \titlepage
 \end{frame}
+
+{
+\usebackgroundtemplate{
+    {
+        \includegraphics[width=1.05\paperheight]{../images/Tuxgaucho.png}
+    }
+}
+\begin{frame}
+    \begin{flushright}
+    \huge \textbf{Thank you!} \\
+    \vfill
+    \small \textbf{rafasgj@gmail.com}
+    \end{flushright}
+\end{frame}
+}
 
 \end{document}
