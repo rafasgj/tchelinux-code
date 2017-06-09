@@ -1,0 +1,130 @@
+\documentclass[aspectratio=169,14pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{graphics}
+\usepackage{transparent}
+% Adiciona tux gauderio a todos os slides
+\usebackgroundtemplate{
+    \includegraphics[width=2cm]{../images/Tuxgaucho.png}
+}
+% Configura a apresentação para ser executada em tela cheia.
+\hypersetup{pdfpagemode=FullScreen}
+% Hide beamer navigation simbols
+\beamertemplatenavigationsymbolsempty
+% Centraliza os títulos dos slides.
+\setbeamertemplate{frametitle}[default][center]
+
+%
+% Modify from here!
+%
+
+\title{Com que ônibus eu vou? \\ \large{Uma introdução à programação com Python}}
+\author{Rafael Guterres Jeffman}
+\institute{Faculdade Senac Porto Alegre \\ Tchelinux}
+\date{9 de Junho de 2017}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Aprendendo Linguagens de Programação}
+    \begin{itemize}
+        \item Sintaxe
+        \item Paradigma
+        \item Biblioteca
+        \item Frameworks
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+    Não adianta ler sobre a linguagem  se você não tiver um problema
+    para resolver...
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{O Problema}
+    
+    \vfill
+    \begin{center}
+        Estou em Porto Alegre, e preciso ir a um lugar, mas não faço
+        idéia de qual ônibus devo utilizar...
+    \end{center}
+    \vfill
+    \vfill
+    \hfill
+    \tiny{Infelizmente, não achei os dados para a cidade de Pelotas...}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A solução}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item \textbf{GTFS} General Transit Feed Specification
+        \item Árvores K-D
+        \item Tabelas de Espalhamento
+        \item Listas
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{O Algoritmo}
+    \vfill
+    \small \begin{enumerate}
+        \item Obtém as coordenadas GPS da origem e destino.
+        \item Obtém as paradas mais próximas do destino.
+        \item Obtém as paradas mais próximas da origem.
+        \item Para cada parada próxima do destino, ordenada por
+        proximidade, compara a lista de ônibus que atende a parada com
+        a lista de ônibus que atendem as paradas próximas à origem.
+        \item O primeiro ônibus encontrado, é a resposta.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A linguagem}
+    \begin{center}
+        \includegraphics[height=0.5\paperheight]{../images/pythonlogo.jpg}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Por que Python?}
+    \vfill
+    \begin{itemize}
+        \item Sintaxe elegante que facilita a leitura
+        \item Suporte a diversos paradigmas (orientação a objetos,
+        estruturado, funcional)
+        \item Eficiente para prototipação rápida
+        \item Se necessário, pode ser facilmente extendida com módulos
+        em outras linguagens
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \vfill
+    \begin{center}
+        \huge Vamos para o código?
+    \end{center}
+\end{frame}
+
+{
+\usebackgroundtemplate{
+    {
+        \includegraphics[width=1.05\paperheight]{../images/Tuxgaucho.png}
+    }
+}
+\begin{frame}
+    \begin{flushright}
+    \huge \textbf{Thank you!} \\
+    \vfill
+    \small \textbf{rafasgj@gmail.com}
+    \end{flushright}
+\end{frame}
+}
+
+\end{document}

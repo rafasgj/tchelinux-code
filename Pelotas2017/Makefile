@@ -1,4 +1,4 @@
-PALESTRAS=linux_distros
+PALESTRAS=linux_distros busao
 
 %.pdf: %.tex
 	pdflatex $<
