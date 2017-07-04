@@ -1,0 +1,2 @@
+Para executar o programa, baixe os dados GTFS encontrados no site
+https://www.datapoa.com.br, e os extraia no diretório GTFS.
