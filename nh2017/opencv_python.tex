@@ -1,0 +1,108 @@
+\documentclass[aspectratio=169,14pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{graphics}
+\usepackage{tikz}
+\usepackage{transparent}
+% Adiciona tux gauderio a todos os slides
+\usebackgroundtemplate{
+    {
+        \transparent{0.2}
+        \includegraphics[width=1.1\paperheight]{../images/Tuxgaucho.png}
+    }
+}
+% Configura a apresentação para ser executada em tela cheia.
+\hypersetup{pdfpagemode=FullScreen}
+% Hide beamer navigation simbols
+\beamertemplatenavigationsymbolsempty
+% Centraliza os títulos dos slides.
+\setbeamertemplate{frametitle}[default][center]
+
+\setbeamercolor{frametitle}{fg=black}
+\setbeamerfont{frametitle}{series=\bfseries}
+
+%
+% Modify from here!
+%
+
+\usepackage{ragged2e}
+
+\title[]{\color{black} \textbf{Phyton e OpenCV \\ Uma introdução prática.}}
+\author[]{Rafael Guterres Jeffman}
+\institute[]{Faculdade Senac Porto Alegre \\ Tchelinux}
+\date{Agosto de 2017}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Python}
+    \begin{itemize}
+        \item{Desenvolvida com o objetivo de facilitar a programação para
+        físicos e matemáticos.}
+        \item{Multi-paradigma, dinâmica, multi-plataforma.}
+        \item{Facilidade de integração com C.}
+        \item{Focada na legibilidade.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{OpenCV}
+    \begin{itemize}
+        \item{Biblioteca \emph{open source} dedicada à visão computacional
+        e \emph{machine learning}.}
+        \item{Possui mais do 2500 algoritmos otimizados.}
+        \item{Abstrai o acesso ao hardware, como câmeras e GPU.}
+        \item{Provê uma abstração simples para criação de interfaces
+        homem-máquina.}
+        \item{Multi-plataforma: Linux, Mac, Windows, iOS e Android.}
+        \item{Suporte a diferentes linguagens de programação, como
+        C, C++, Objective-C, Python e Java.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{OpenCV e Python}
+    \begin{itemize}
+        \item{Fácil de usar.}
+        \item{Rápido de prototipar.}
+        \item{Portável e Eficiente.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]
+    \begin{center}
+    \Huge \textbf{Demonstração}
+    \end{center}
+\end{frame}
+
+\begin{frame}[b]
+    \begin{tikzpicture}[remember picture,overlay]
+        % Posiciona o overlay na página
+        \node [xshift=0.5\paperwidth, yshift=-0.5\paperheight] at (current page.north west)
+        % Adiciona a imagem, definindo seu tamanho
+        {\includegraphics[width=\paperwidth]{../images/thats-all-folks.jpg}};
+    \end{tikzpicture}
+
+    \begin{flushright}
+    \color{white} \textbf{rafasgj@gmail.com}
+    \end{flushright}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Links}
+    \begin{itemize}
+    \item{\textbf{Python} \\ $\:$ https://python.org}
+    \item{\textbf{OpenCV} \\ $\:$ https://opencv.org}
+    \item{\textbf{Python Online Course} \\ $\:$ https://codeacademy.com/learn/python}
+    \item{\textbf{OpenCV Tutorial} \\ $\:$ https://docs.opencv.org/doc/tutorials/tutorials.html}
+    \item{\textbf{OpenCV e Python} \\ $\:$ https://learnopencv.com}
+    \end{itemize}
+\end{frame}
+
+\end{document}
