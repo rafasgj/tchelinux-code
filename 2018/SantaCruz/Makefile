@@ -1,4 +1,4 @@
-PALESTRAS=behave
+PALESTRAS=behave documentacao
 
 %.pdf: %.tex
 	pdflatex $<
