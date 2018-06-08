@@ -1,0 +1,309 @@
+\input{presentations}
+
+\loadtheme{tchelinux}
+\usecodingsamples{python}
+
+\usepackage{setspace}
+
+\title{Não deixe para testar depois o que você pode testar antes.}
+\author{Rafael Guterres Jeffman}
+\institute{Tchelinux}
+\date{6 de Junho de 2018}
+
+\newcommand\bddfeature[2]{{\color{red}Feature: }{#1\\}{\hspace{1cm}#2\\}}
+\newcommand\bddscenario[1]{{\color{blue!75!black}Scenario: }{#1\\}}
+\newcommand\bddgiven[1]{{\color{green!50!black}Given }{#1\\}}
+\newcommand\bddwhen[1]{{\color{green!50!black}When }{#1\\}}
+\newcommand\bddthen[1]{{\color{green!50!black}Then }{#1\\}}
+\newcommand\bddand[1]{{\color{green!50!black}And }{#1\\}}
+\newcommand\bddbut[1]{{\color{green!50!black}But }{#1\\}}
+
+\makeatletter
+\preto{\@verbatim}{\topsep=0pt \partopsep=0pt}
+\makeatother
+
+\begin{document}
+
+\coverframe
+
+% 01
+\bigtitle{Por que desenvolvemos software?}
+
+% 02
+\bigimage{images/bubbaj.jpg}
+
+% 03
+\bigtitle{Como desenvolvemos software?}
+
+% 04
+\bigimage{images/walter.png}
+
+% 05
+\begin{frame}
+    \frametitle{Ciclo do Desenvolvimento de Software}
+    \begin{itemize}
+        \item Análise
+        \item Projeto
+        \item Implementação
+        \item Testes
+        \item Implantação
+    \end{itemize}
+\end{frame}
+
+% 06
+\begin{frame}
+    \frametitle{User Stories}
+    \begin{itemize}
+        \item Descrição informal de uma funcionalidade.
+        \item Escritas na perspectiva do usuário.
+        \item As histórias devem dizer \textbf{quem} é o usuário,
+        \textbf{o que} ele vai fazer, e qual o \textbf{objetivo}
+        ele quer atingir.
+    \end{itemize}
+\end{frame}
+
+% 07
+\begin{frame}
+    \frametitle{Critérios de Aceitação}
+    Para determinar se uma história de usuário está completa,
+    deve haver um \textbf{critério de aceitação}, com objetivos
+    que podem ser medidos e avaliados.
+\end{frame}
+
+% 08
+\begin{frame}
+    \frametitle{Test Driven Development}
+    \begin{itemize}
+        \item Faz com que todo código escrito seja testado.
+        \item Auxilia no design da aplicação.
+        \item Inverte a ordem tradicional de testes de software.
+    \end{itemize}
+    \setstretch{1.5}\color{blue}
+    \hspace{1cm}Cria teste $\rightarrow$ Teste falha $\rightarrow$\\
+    \hspace{3cm}Implementa código $\rightarrow$ Teste passa $\rightarrow$\\
+    \hspace{6cm}Refatorar código
+    
+\end{frame}
+
+% 09
+\begin{frame}
+    \frametitle{Críticas ao TDD}
+    \begin{itemize}[label=]
+        \item Definição do que é uma \textbf{unidade}
+        \item Quantidade de código de teste.
+        \item Uso de \textbf{mocks}.
+        \item Dificuldade de testar algumas situações, com bancos de dados
+        e configurações específicas de plataforma.
+    \end{itemize}
+\end{frame}
+
+% 10
+\begin{frame}
+    \frametitle{Behavior Driven Development}
+    \begin{itemize}
+        \item A unidade testada, é um requisito.
+        \item Testa um comportamento esperado do sistema.
+        \item Utiliza uma linguagem específica de domínio.
+        \item Faz uso extensivo de ferramentas.
+    \end{itemize}
+\end{frame}
+
+% 11
+\begin{frame}
+    \frametitle{Gherkin DSL}
+    \begin{itemize}
+        \item Desenvolvida para definir casos de teste no Cucumber.
+        \item Procura forçar requisitos e resultados claros.
+        \item Facilmente traduz os critérios de aceitação de histórias.
+        \item Internacionalizável.
+    \end{itemize}
+\end{frame}
+
+% 12
+\begin{frame}
+    \frametitle{Exemplo}
+    \bddfeature{I want to code.}{
+        As a Developer, I want to code, so that I can pay my bills.}
+    \bddscenario{I have to eat.}
+    \bddgiven{I know how to code.}
+    \bddthen{I'm hired to code.}
+    \bddthen{I'm payed in pizza.}
+\end{frame}
+
+% 13
+\begin{frame}
+    \frametitle{Behave}
+    \begin{itemize}
+        \item Behave é uma ferramenta que auxilia no uso de BDD com Python.
+        \item Auxilia na automação de testes de aceitação (e unitários).
+        \item Facil de integrar ao projeto.
+        \item Busca facilitar a criação do código de teste.
+    \end{itemize}
+\end{frame}
+
+% 14
+\begin{frame}
+    \frametitle{Features}
+    \begin{itemize}
+        \item Features são escritas pelos Stakeholders, Analistas, etc.
+        \item Uma feature terá, provavelmente, vários cenários.
+        \item Podemos utilizar uma História de Usuário como uma feature,
+        e os cenários como os testes de aceitação dessa feature.
+        \item Descritas em linguagem natural, baseado no formato Gherkin.
+    \end{itemize}
+\end{frame}
+
+% 15
+\begin{frame}
+    \frametitle{Cenários}
+    \begin{itemize}
+        \item Descrevem os passos para validar um cenário de uma feature.
+        \item Cada cenário descreve apenas uma característica da feature.
+        \item Cenários são criados a partir do ponto de vista do usuário.
+        \item Podemos ter cenários para situações de erro.
+    \end{itemize}
+\end{frame}
+
+% 16
+\begin{frame}
+    \frametitle{Given, When, Then}
+    \vfill
+    Cenários são descritos em passos que, se executados corretamente, mostram que
+    o cenário está corretamente implementado.
+    \vfill
+    \begin{description}
+        \item[Given]{Utilizado para colocar o sistema em um estado conhecido.}
+        \item[When]{Ações são executadas, modificando, ou não, o estado do sistema.}
+        \item[Then]{Saídas observadas e avaliadas.}
+    \end{description}
+\end{frame}
+
+% 17
+\begin{frame}[fragile]
+    \frametitle{Um cenário completo.}
+
+    \bddscenario{Change data of an inexistent institution.}
+    \bddgiven{the database has data for two institutions}
+    \bddwhen{changing the data of an institution with id "inexistent" to}
+    {\color{magenta}
+    \begin{verbatim}
+        """
+        { "long_name": "A Nice Place to Be" }
+        """\end{verbatim}}
+    \bddthen{the status code is 404}
+\end{frame}
+
+% 18
+\begin{frame}
+    \frametitle{Testando com o Behave.}
+    \begin{itemize}
+        \item As \textbf{features} devem ficar em um diretório \textit{features}
+        \item As implementações dos \textbf{passos} devem ficar em um subdiretório
+        \textbf{steps}, dentro de \textit{features}.
+        \item Você pode controlar diversos aspectos dos testes através de 
+        parâmetros da linha de comando.
+    \end{itemize}
+\end{frame}
+
+% 19
+{%
+\usebackgroundtemplate{}%
+\begin{frame}[fragile]
+\color{orange}
+\begin{verbatim}
+You can implement step definitions for undefined steps
+with these snippets:
+
+@given(u'the database has data for two institutions')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Given the ...')
+
+@when(u'changing the data of an institution...')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When changing...')
+
+@then(u'the status code is 404')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then ...')            
+\end{verbatim}
+\end{frame}
+}
+
+% 20
+{%
+\usebackgroundtemplate{}%
+\begin{frame}[fragile]
+    \frametitle{Implementando os Testes: \textit{Given}}
+    \begin{python}
+@given('the database has data for two institutions')
+def given_two_institutions_in_two_cities(context):
+    """Add two institutions to the database."""
+    url = "http://127.0.0.1:5000/api/city"
+    for v in context.cidades.values():
+        response = requests.post(url, json=v)
+        assert response.status_code == 201
+    url = "http://127.0.0.1:5000/api/institution"
+    for institution in context.institutions:
+        response = requests.post(url, json=institution)
+        assert response.status_code == 201
+    \end{python}
+\end{frame}
+}
+
+% 21
+{%
+\usebackgroundtemplate{}%
+\begin{frame}[fragile]
+    \frametitle{Implementando os Testes: \textit{When}}
+    \begin{python}
+@when('changing the data of an institution "{inst_id}"')
+def when_changing_institution_data(context, inst_id):
+    """Request changes to the institution data."""
+    context.institution_id = institution_id
+    context.input = json.loads(context.text)
+    url = "http://127.0.0.1:5000/api/institution/{}"
+    url = url.format(institution_id)
+    context.response = requests.put(url,
+                                    json=context.input)
+\end{python}
+\end{frame}
+}
+
+% 22
+{%
+\usebackgroundtemplate{}%
+\begin{frame}[fragile]
+    \frametitle{Implementando os Testes: \textit{Then}}
+    \begin{python}
+@then('the status code is {status_code}')
+def then_verify_status_code(context, status_code):
+    """Test the context response status code."""
+    expected = int(status_code)
+    observed = context.response.status_code
+    assert expected == observed 
+    \end{python}
+\end{frame}
+}
+
+% 23
+\bigtitle{Implementando o Código\vfill
+    {\Large{Agora devemos passar nos testes...}}\vfill
+    Começa a diversão!}
+
+% 24
+\begin{frame}
+    \frametitle{Para onde ir agora?}
+    \begin{itemize}
+        \item \url{http://github.com/behave}
+        \item {\small\url{http://behave.readthedocs.io/en/latest/tutorial.html}}
+        \item \url{http://behave.readthedocs.io/en/latest}
+    \end{itemize}
+\end{frame}
+
+% 25
+\finalframe[Obrigado!]{
+    \small\url{http://rafaeljeffman.com?tchelinux}\\
+    \url{rafasgj@gmail.com}
+}
+
+\end{document}
