@@ -3,7 +3,7 @@ PALESTRAS=behave documentacao
 %.pdf: %.tex
 	pdflatex $<
 	pdflatex $<
-	$(RM) *.aux *.dvi *.out *.log *.nav *.snm *.toc
+	$(RM) *.aux *.dvi *.out *.log *.nav *.snm *.toc *.vrb
 
 all: $(patsubst %,%.pdf,$(PALESTRAS))
 
