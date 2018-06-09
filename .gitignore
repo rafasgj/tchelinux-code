@@ -11,6 +11,8 @@
 *.nav
 *.snm
 *.toc
+*.vrb
+*.gz
 
 # temparary files
 *.swp
