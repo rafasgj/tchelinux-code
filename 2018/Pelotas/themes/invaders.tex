@@ -1,0 +1,21 @@
+\usepackage{tikz}
+
+\usebackgroundtemplate{
+    % background image by Michel van Osenbruggen.
+    \tikz\node[opacity=0.3, inner sep=0pt]{
+        \includegraphics[width=\paperwidth]{images/invaders.jpg}
+    };
+}
+
+\setbeamerfont{title}{size=\huge}
+\setbeamercolor{title}{fg=magenta!60!black}
+\setbeamercolor{frametitle}{fg=magenta!60!black}
+\setbeamertemplate{frametitle}[default][center]
+\setbeamerfont{frametitle}{size=\Large\bfseries}
+
+
+\setlist[itemize]{
+    itemsep=0.25cm,
+    label={{\footnotesize$\bullet$}}
+}
+
