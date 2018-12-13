@@ -1,5 +1,7 @@
-import sys, pygame
-from random import random
+"""Exemplo básico do PyGame."""
+
+import sys
+import pygame
 pygame.init()
 
 size = width, height = (800, 600)
@@ -8,12 +10,13 @@ black = (0, 0, 0)
 
 screen = pygame.display.set_mode(size)
 
-ball = pygame.image.load("media/images/ufo_spin.gif")
+ball = pygame.image.load("media/images/intro_ball.gif")
 ballrect = ball.get_rect()
 
 while 1:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT: sys.exit()
+        if event.type == pygame.QUIT:
+            sys.exit()
 
     ballrect = ballrect.move(speed)
     if ballrect.left < 0 or ballrect.right > width:
@@ -24,4 +27,3 @@ while 1:
     screen.fill(black)
     screen.blit(ball, ballrect)
     pygame.display.flip()
-
