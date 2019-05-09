@@ -22,3 +22,21 @@
 % set item markers
 \setlist[itemize,1]{label={{\footnotesize$\blacktriangleright$}}}
 
+% bigimage{file}
+\renewcommand{\bigimage}[2][1.0]{%
+    {%
+        \setbeamertemplate{background canvas}{ %
+            \setbeamercolor{background canvas}{bg=black}%
+        }%
+        {%
+            \begin{frame}%
+                {%
+                \makebox[\textwidth][c]{%
+                  \includegraphics[height=#1\paperheight, width=#1\paperwidth,%
+                                   keepaspectratio]{#2}%
+                  }%
+                }%
+            \end{frame}%
+        }%
+    }%
+}
