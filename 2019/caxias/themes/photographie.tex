@@ -1,3 +1,5 @@
+\usepackage{tikz}%
+
 % set text colors
 \setbeamercolor{frametitle}{fg=black}
 \setbeamercolor{structure}{fg=black}
@@ -39,4 +41,26 @@
             \end{frame}%
         }%
     }%
+}
+
+% Timed image transition
+\newcommand{\transition}[3][1.0]{%
+    {%
+        \setbeamertemplate{background canvas}{ %
+            \tikz[remember picture, overlay]\node at (current page.center) {
+                 \includegraphics[height=#1\paperheight, width=#1\paperwidth, keepaspectratio]
+                 {#3}%
+            };
+        }%
+        {%
+            \begin{frame}%
+                \transdissolve %
+                \transduration{#2} %
+            \end{frame}%
+        }%
+    }%
+    \begin{frame}%
+        \transdissolve %
+        \transduration{0.2} %
+    \end{frame}%
 }
