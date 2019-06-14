@@ -1,0 +1,421 @@
+\input{presentations}
+
+\usecodingsamples{python}
+
+%\loadtheme{apple_keynote_black}
+\loadtheme{invaders}
+
+\title{Desenvolvendo Jogos com pygame}
+\subtitle{}
+\author{Rafael Guterres Jeffman}
+\institute{}
+\date{2019}
+
+\begin{document}
+
+%01
+\coverframe
+
+%02
+\bigtitle{Por que \\ jogos?}
+
+%02.a
+\begin{frame}
+    \frametitle{Desenvolver Jogos}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item É divertido.
+                \item Tu sempre quis fazer.
+                \item Foi a primeira coisa que tu fez com algo que parecia
+                um computador.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Não precisa ser difícil.
+                \item Não é fácil.
+                \item Tu quer mostrar pra todo mundo que tu consegue
+                desenvolver um jogo.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \begin{center}
+        \item {\Large \textbf{É muito divertido!}}
+    \end{center}
+\end{frame}
+
+%03
+\bigtitle{Por que \\ Python?}
+
+%03.a
+\begin{frame}
+    \frametitle{Por que Python?}
+
+    \begin{itemize}
+        \item É divertido.
+        \item Permite que a preocupação seja o problema.
+        \item Faz com que tu aprenda uma linguagem que está sendo muito
+        utilizada.
+    \end{itemize}
+\end{frame}
+
+%04
+\bigtitle{Por que \\ pygame?}
+
+%04.a
+\begin{frame}
+    \frametitle{pygame}
+
+    \begin{itemize}
+        \item É multi-plataforma (SDL).
+        \item Retira as parada chata da programação de jogos.
+        \item Não é um engine de jogos, e queremos programar.
+        \item É uma biblioteca de componentes.
+    \end{itemize}
+\end{frame}
+
+%05
+\bigimage{images/moodboard.png}
+
+%06
+\begin{frame}
+    \frametitle{Every saga has a beginning!}
+    \vfill
+    \begin{center}
+    \large \textbf{Durante um teste de rotina, a nave Genesis é trasportada
+    através de um \textit{wormhole} para o quadrante \textit{gamma} da galáxia,
+    e precisa sobreviver à \textit{Guerra do Infinito}.}
+    \vfill
+    \large\textbf{O que era só um dia de testes virou\\uma luta pela sobrevivência.}
+    \end{center}
+    \vfill
+\end{frame}
+
+%06.b
+\begin{frame}
+    \frametitle{Na vida nada se cria...}
+
+    \begin{itemize}
+        \item Gradius/Nemesis
+        \item Farscape
+        \item Star Trek: Voyager
+        \item Um filme muito, muito ruim...
+    \end{itemize}
+\end{frame}
+
+
+%07
+\begin{frame}[fragile]
+    \frametitle{Hello World}
+
+    \begin{python}
+        import pygame
+        pygame.init()
+        # inicia tela
+        screen = pygame.display.set_mode((320,200))
+        pygame.display.set_caption("Hello World!")
+        # loop principal
+        running = True
+        while running:
+            # trata eventos
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+            # atualiza objetos
+            # desenha objetos
+            # pygame usa double buffer!
+            pygame.display.update()
+    \end{python}
+\end{frame}
+
+%08
+\begin{frame}[fragile]
+    \frametitle{A janela da aplicação}
+
+    \begin{itemize}
+        \item Aplicações pygame podem usar o modo janela ou \textit{fullscreen}.
+        \item No modo \textit{fullscreen}, o tamanho da janela é a sua resolução.
+    \end{itemize}
+    \begin{python}
+    width, height = size = (800, 600)
+    flags = pygame.FULLSCREEN | pygame.HWSURFACE | pygame.DOUBLEBUF
+    screen = pygame.display.set_mode(size, flags)
+    \end{python}
+\end{frame}
+
+%09
+\begin{frame}[fragile]
+    \frametitle{Desenhando na tela}
+    \begin{itemize}
+        \item A estrutura criada pela função \texttt{display.set\_mode} é uma
+        superfície, que utilizamos para desenhar na tela.
+        \item Esta estrutura pode ser utilizada com o módulo \texttt{pygame.draw}.
+    \end{itemize}
+    \vfill
+    \begin{python}
+        python.draw.circle(screen, red, (100,100), 50)
+        python.draw.polygon(screen, white, point_list)
+        python.draw.rect(screen, white, (x, y, rect_w, rect_h))
+        screen.blit(image, (x, y))
+    \end{python}
+\end{frame}
+
+%10
+\begin{frame}
+    \frametitle{Um campo de estrelas}
+
+    \begin{itemize}
+        \item Todo jogo de plataforma que se preze usa o efeito de \textit{paralaxe}.
+        \item Um campo de estrelas com três planos pode ser criado com círculos
+        que se movem com velocidades diferentes.
+        \item \textit{List comprehensions} e \textit{tuplas} são muito úteis para isso.
+    \end{itemize}
+\end{frame}
+
+%10.a
+\begin{frame}[fragile]
+    \frametitle{Um campo de estrelas - Criação}
+
+    \begin{python}
+    def create_star(x):
+        y = randint(0, height)
+        speed = choice([1, 2, 3])
+        magnitude = choice([1, 2, 3])
+        color = (coice(100, 200, 250),) * 3
+        return (x, y, speed, magnitude, color)
+
+    stars = [create_star(randint(0, width)) for star in range(count)]
+    \end{python}
+\end{frame}
+
+%10.b
+\begin{frame}[fragile]
+    \frametitle{Um campo de estrelas - Movimentação}
+
+    \begin{python}
+    stars = [[x - speed, y, speed, mag, color]
+             if x - speed > 0
+             else create_star(width)
+             for x, y, speed, mag, color in stars]
+    \end{python}
+\end{frame}
+
+%10.c
+\bigimage{images/starfield.png}
+
+%11
+\begin{frame}
+    \frametitle{Sprites}
+
+    \begin{itemize}
+        \item Sprites são imagens 2D, mas nos jogos, eles tem movimento.
+        \item O uso de sprites facilita a definição dos objetos móveis
+        do jogo.
+        \item Sprites, normalmente, tem suporte a transparência.
+    \end{itemize}
+\end{frame}
+
+%11.a
+\bigimage{images/f18-big.png}
+
+%12
+\begin{frame}
+    \frametitle{Sprites com animação}
+
+    \begin{itemize}
+        \item pygame suporta imagens GIF, mas sem animação.
+        \item pygame oferece diversos plugins que podem ser utilizados.
+        \item Obviamente, existe um plugin para GIF animado.
+        \item Mais óbvio ainda... ele estava abandonado e não funcionava...
+    \end{itemize}
+\end{frame}
+
+%12.a
+\begin{frame}
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \includegraphics[width=3cm]{images/out0000.png}
+            \vfill
+            \includegraphics[width=3cm]{images/out0003.png}
+            \vfill
+            \includegraphics[width=3cm]{images/out0006.png}
+            \vfill
+            \includegraphics[width=3cm]{images/out0009.png}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \includegraphics[width=3cm]{images/out0001.png}
+            \vfill
+            \includegraphics[width=3cm]{images/out0004.png}
+            \vfill
+            \includegraphics[width=3cm]{images/out0007.png}
+            \vfill
+            \includegraphics[width=3cm]{images/out0010.png}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \includegraphics[width=3cm]{images/out0002.png}
+            \vfill
+            \includegraphics[width=3cm]{images/out0005.png}
+            \vfill
+            \includegraphics[width=3cm]{images/out0008.png}
+            \vfill
+            \includegraphics[width=3cm]{images/out0011.png}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+%13
+\begin{frame}
+    \frametitle{Tratamento de Eventos}
+
+    \begin{itemize}
+        \item pygame oferece um sistema de eventos por \textit{polling}.
+        \item Para criar um \textit{engine} com um \textit{loop} genérico,
+        é preciso permitir que o código cliente seja chamado de volta.
+        \item Um mecanismo desses permite que funções cliente sejam chamadas
+        para eventos do pygame.
+        \item \textit{E para felicidade geral da nação...\\ funções são} cidadãs de primeira ordem\textit{!}
+    \end{itemize}
+\end{frame}
+
+%13.b
+\begin{frame}[fragile]
+    \frametitle{O loop de eventos}
+
+    \begin{python}
+# loop genérico, em Game.run()
+while self.running:
+    # handle events
+    for event in pygame.event.get():
+        handle_event(event)
+    \end{python}
+\end{frame}
+
+%13.c
+\begin{frame}[fragile]
+    \frametitle{Respondendo a eventos de teclado}
+
+    \begin{python}
+# my code
+def move(event):
+    """Move player with directional keys."""
+    keys = pygame.key.get_pressed()
+    dx, dy = 0, 0
+    dy = -1 if keys[pygame.K_UP] else 0
+    dy = dy + 1 if keys[pygame.K_DOWN] else dy
+    dx = -1 if keys[pygame.K_LEFT] else 0
+    dx = dx + 1 if keys[pygame.K_RIGHT] else dx
+    player.move = (dx * config.speed, dy * config.speed)
+
+# Configuring the game object
+game.on_key((pygame.K_UP, pygame.K_DOWN,
+             pygame.K_LEFT, pygame.K_RIGHT), move)
+    \end{python}
+\end{frame}
+
+%14
+\bigtitle{E o que mais \\ falta fazer?}
+
+%14.a
+\begin{frame}
+    \frametitle{Um jogo tem tanta coisa...}
+
+    \begin{itemize}
+        \item Tratamento de colisões.
+        \item Comportamento de NPCs.
+        \item Trocas de fazes.
+        \item Cenários.
+    \end{itemize}
+\end{frame}
+
+% 15
+\bigtitle{Sem audio?}
+
+%15.b
+\begin{frame}
+    \frametitle{pygame Mixer!}
+
+    \begin{itemize}
+        \item pygame tem um mixer que, sem configuração, suporta 8 canais de audio.
+        \item Suporte a loops de áudio já embutido.
+        \item Suporte a diversos formatos de áudio.
+        \item Ogg Vorbis é a melhor opção.
+        \item E a internet está cheia de loops \textit{royalty free}...
+    \end{itemize}
+\end{frame}
+
+%16
+\begin{frame}
+    \frametitle{Quão produtivo é o pygame?}
+
+    \vfill
+    \begin{center}
+        Você tem 24h para...
+        \begin{itemize}
+            \item Aprender a usar o pygame.
+            \item Escrever uma demonstração.
+            \item Criar os \textit{slides} de uma palestra.
+            \item Apresentar a palastra.
+        \end{itemize}
+    \end{center}
+    \vfill
+\end{frame}
+
+%16.a
+\begin{frame}
+    \frametitle{Quão produtivo é o pygame?}
+
+    \vfill
+    \begin{center}
+        E ainda por cima...
+        \begin{itemize}
+            \item Ministrar três horas de aula.
+            \item Dirigir de Porto Alegre a Pelotas (4h).
+            \vfill
+            \item Passear com os cachorros!
+        \end{itemize}
+    \end{center}
+    \vfill
+\end{frame}
+
+% 16.b
+\bigtitle{\color{magenta} {\Huge \textbf{E DEU CERTO!}}}
+
+% 17
+\bigtitle{E agora? \\ Pra onde vou?}
+
+% 17.a
+\bigtitle{\url{https://python.org} \vfill \url{https://pygame.org}}
+
+%18
+\begin{frame}
+    \frametitle{Próximos Passos}
+
+    \begin{itemize}
+        \item Desenvolver um engine para criação de jogos 2D!
+        \item Para ensinar programação orientada a objetos com Python.
+        \item Para ensinar \textit{design} de jogos.
+        \item Para ensinar criação de roteiros de jogos.
+    \end{itemize}
+\end{frame}
+
+%18.a
+\bigtitle{\Large E para criar jogos, né?}
+
+%18.b
+\bigtitle{\large Na verdade... \\ Esse nunca foi o objetivo...}
+
+%19
+\bigtitle{\Large Mas nem uma demonstração?}
+
+%19.b
+\bigtitle{\large \url{https://github.com/rafasgj/genesis}}
+
+%20
+\finalframe[Muito Obrigado!]{
+    \url{mailto:rafasgj@gmail.com}\\
+    \url{https://slides.tchelinux.org}
+}
+
+\end{document}
