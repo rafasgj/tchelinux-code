@@ -1,7 +1,10 @@
-PALESTRAS=pygame fotografia
+PALESTRAS=pygame fotografia buildroot
 
 # LATEX=latex
 LATEX=xelatex
+
+%.pdf: %.key
+	keynotec $<
 
 %.pdf: %.tex
 	TEXINPUTS=${TEXINPUTS}:../.. $(LATEX) $<
