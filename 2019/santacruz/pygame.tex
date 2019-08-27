@@ -155,9 +155,9 @@
     \end{itemize}
     \vfill
     \begin{python}
-        python.draw.circle(screen, red, (100,100), 50)
-        python.draw.polygon(screen, white, point_list)
-        python.draw.rect(screen, white, (x, y, rect_w, rect_h))
+        pygame.draw.circle(screen, red, (100,100), 50)
+        pygame.draw.polygon(screen, white, point_list)
+        pygame.draw.rect(screen, white, (x, y, rect_w, rect_h))
         screen.blit(image, (x, y))
     \end{python}
 \end{frame}
@@ -275,7 +275,7 @@
         é preciso permitir que o código cliente seja chamado de volta.
         \item Um mecanismo desses permite que funções cliente sejam chamadas
         para eventos do pygame.
-        \item \textit{E para felicidade geral da nação...\\ função são} cidadãs de primeira ordem\textit{!}
+        \item \textit{E para felicidade geral da nação...\\ funções são} cidadãs de primeira ordem\textit{!}
     \end{itemize}
 \end{frame}
 
@@ -415,7 +415,7 @@ game.on_key((pygame.K_UP, pygame.K_DOWN,
 %20
 \finalframe[Muito Obrigado!]{
     \url{mailto:rafasgj@gmail.com}\\
-    \url{https://rafaeljeffman.com/tchelinux}
+    \url{https://slides.tchelinux.org}
 }
 
 \end{document}

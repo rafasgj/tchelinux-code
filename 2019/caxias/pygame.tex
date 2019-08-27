@@ -19,7 +19,7 @@
 %02
 \bigtitle{Por que \\ jogos?}
 
-%02
+%02.a
 \begin{frame}
     \frametitle{Desenvolver Jogos}
 
@@ -70,9 +70,9 @@
 
     \begin{itemize}
         \item É multi-plataforma (SDL).
+        \item Retira as parada chata da programação de jogos.
+        \item Não é um engine de jogos, e queremos programar.
         \item É uma biblioteca de componentes.
-        \item Retira \textit{as parada chata} da programação de jogos.
-        \item Não é um engine de jogos, afinal, queremos programar.
     \end{itemize}
 \end{frame}
 
@@ -108,7 +108,7 @@
 
 %07
 \begin{frame}[fragile]
-    \frametitle{Modelo de Aplicação pygame}
+    \frametitle{Hello World}
 
     \begin{python}
         import pygame
@@ -132,11 +132,13 @@
 
 %08
 \begin{frame}[fragile]
-    \frametitle{O mínimo que voce precisa saber...}
+    \frametitle{A janela da aplicação}
 
+    \begin{itemize}
+        \item Aplicações pygame podem usar o modo janela ou \textit{fullscreen}.
+        \item No modo \textit{fullscreen}, o tamanho da janela é a sua resolução.
+    \end{itemize}
     \begin{python}
-    pygame.init()
-
     width, height = size = (800, 600)
     flags = pygame.FULLSCREEN | pygame.HWSURFACE | pygame.DOUBLEBUF
     screen = pygame.display.set_mode(size, flags)
@@ -146,78 +148,61 @@
 %09
 \begin{frame}[fragile]
     \frametitle{Desenhando na tela}
+    \begin{itemize}
+        \item A estrutura criada pela função \texttt{display.set\_mode} é uma
+        superfície, que utilizamos para desenhar na tela.
+        \item Esta estrutura pode ser utilizada com o módulo \texttt{pygame.draw}.
+    \end{itemize}
+    \vfill
     \begin{python}
-        python.draw.circle(screen, red, (100,100), 50)
-        python.draw.polygon(screen, white, point_list)
-        python.draw.rect(screen, white, (x, y, rect_w, rect_h))
+        pygame.draw.circle(screen, red, (100,100), 50)
+        pygame.draw.polygon(screen, white, point_list)
+        pygame.draw.rect(screen, white, (x, y, rect_w, rect_h))
         screen.blit(image, (x, y))
     \end{python}
 \end{frame}
 
 %10
+\begin{frame}
+    \frametitle{Um campo de estrelas}
+
+    \begin{itemize}
+        \item Todo jogo de plataforma que se preze usa o efeito de \textit{paralaxe}.
+        \item Um campo de estrelas com três planos pode ser criado com círculos
+        que se movem com velocidades diferentes.
+        \item \textit{List comprehensions} e \textit{tuplas} são muito úteis para isso.
+    \end{itemize}
+\end{frame}
+
+%10.a
 \begin{frame}[fragile]
-    \frametitle{Um universo a estrelar...}
+    \frametitle{Um campo de estrelas - Criação}
 
     \begin{python}
-    from random import randint, choice
-
     def create_star(x):
         y = randint(0, height)
         speed = choice([1, 2, 3])
         magnitude = choice([1, 2, 3])
         color = (coice(100, 200, 250),) * 3
         return (x, y, speed, magnitude, color)
-    \end{python}
-\end{frame}
 
-%10.a
-\begin{frame}[fragile]
-    \frametitle{List Comprehension}
-
-    \begin{itemize}
-        \item É uma construção de Python que permite o processamento de
-        uma lista de elementos.
-    \end{itemize}
-
-    \begin{python}
-    starfield = [create_star(randint(0, width))
-                 for star in range(count)]
+    stars = [create_star(randint(0, width)) for star in range(count)]
     \end{python}
 \end{frame}
 
 %10.b
 \begin{frame}[fragile]
-    \frametitle{Operador Ternário}
-
-    \begin{itemize}
-        \item O operador ternário seleciona um entre dois valores, dada uma
-        condição.
-        \item Vai muito bem com \textit{guacamole} e \textit{list comprehension}.
-    \end{itemize}
+    \frametitle{Um campo de estrelas - Movimentação}
 
     \begin{python}
-    stars = [(x - speed, y, speed, mag, color)
+    stars = [[x - speed, y, speed, mag, color]
              if x - speed > 0
-             else create_star(width)}
+             else create_star(width)
              for x, y, speed, mag, color in stars]
     \end{python}
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{Desenhando a lista de estrelas}
-
-    \begin{itemize}
-        \item Os \textit{list comprehension} estão entre as estruturas mais
-        eficientes para processar listas.
-    \end{itemize}
-
-    \begin{python}
-        [python.draw.circle(screen, color, (x, y), mag)
-         for x, y, _, mag, color in stars]
-    \end{python}
-\end{frame}
-
-%10.d
+%10.c
 \bigimage{images/starfield.png}
 
 %11
@@ -241,9 +226,9 @@
 
     \begin{itemize}
         \item pygame suporta imagens GIF, mas sem animação.
-        \item É possível utilizar eventos para animar \textit{sprites}.
         \item pygame oferece diversos plugins que podem ser utilizados.
-        \item Obviamente, existe um plugin para GIF animado (que não funciona).
+        \item Obviamente, existe um plugin para GIF animado.
+        \item Mais óbvio ainda... ele estava abandonado e não funcionava...
     \end{itemize}
 \end{frame}
 
@@ -299,27 +284,12 @@
     \frametitle{O loop de eventos}
 
     \begin{python}
-    # loop genérico, em Game.run()
-    while self.running:
-        # handle events
-        for event in pygame.event.get():
-            handle_event(event)
+# loop genérico, em Game.run()
+while self.running:
+    # handle events
+    for event in pygame.event.get():
+        handle_event(event)
     \end{python}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Respondendo a eventos de teclado}
-
-    \begin{python}
-    def handle_event(event):
-        if event.type in [pygame.KEYDOWN]:
-            keydown(event)
-
-    def keydown(event):
-        for handler in keydown_handlers:
-            handler(event)
-    \end{python}
-
 \end{frame}
 
 %13.c
@@ -339,10 +309,8 @@ def move(event):
     player.move = (dx * config.speed, dy * config.speed)
 
 # Configuring the game object
-game.on_keydown((pygame.K_UP, pygame.K_DOWN,
-                pygame.K_LEFT, pygame.K_RIGHT), move)
-game.on_keyup((pygame.K_UP, pygame.K_DOWN,
-               pygame.K_LEFT, pygame.K_RIGHT), move)
+game.on_key((pygame.K_UP, pygame.K_DOWN,
+             pygame.K_LEFT, pygame.K_RIGHT), move)
     \end{python}
 \end{frame}
 
@@ -377,6 +345,43 @@ game.on_keyup((pygame.K_UP, pygame.K_DOWN,
     \end{itemize}
 \end{frame}
 
+%16
+\begin{frame}
+    \frametitle{Quão produtivo é o pygame?}
+
+    \vfill
+    \begin{center}
+        Você tem 24h para...
+        \begin{itemize}
+            \item Aprender a usar o pygame.
+            \item Escrever uma demonstração.
+            \item Criar os \textit{slides} de uma palestra.
+            \item Apresentar a palastra.
+        \end{itemize}
+    \end{center}
+    \vfill
+\end{frame}
+
+%16.a
+\begin{frame}
+    \frametitle{Quão produtivo é o pygame?}
+
+    \vfill
+    \begin{center}
+        E ainda por cima...
+        \begin{itemize}
+            \item Ministrar três horas de aula.
+            \item Dirigir de Porto Alegre a Pelotas (4h).
+            \vfill
+            \item Passear com os cachorros!
+        \end{itemize}
+    \end{center}
+    \vfill
+\end{frame}
+
+% 16.b
+\bigtitle{\color{magenta} {\Huge \textbf{E DEU CERTO!}}}
+
 % 17
 \bigtitle{E agora? \\ Pra onde vou?}
 
@@ -410,7 +415,7 @@ game.on_keyup((pygame.K_UP, pygame.K_DOWN,
 %20
 \finalframe[Muito Obrigado!]{
     \url{mailto:rafasgj@gmail.com}\\
-    \url{https://rafaeljeffman.com/tchelinux}
+    \url{https://slides.tchelinux.org}
 }
 
 \end{document}
